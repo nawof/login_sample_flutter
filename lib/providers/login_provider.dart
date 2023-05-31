@@ -26,39 +26,33 @@ class LoginProvider extends ChangeNotifier {
     required this.title,
   });
 
-  void _saveUserEmail() {
+  void saveUserEmail() {
     email = emailController.text;
   }
 
-  void _saveUserNumber() {
+  void saveUserNumber() {
     phoneNumber = phoneNumberController.text;
   }
 
   void saveUserPassword() {
     password = passController.text;
-    _saveUserEmail();
-    _saveUserNumber();
+    saveUserEmail();
+    saveUserNumber();
 
     if (email != null && !validateEmail(email!)) {
-      // Show an error message for invalid email
-      // For example, you can use a snackbar or dialog to display the error message
       showErrorMessage('Invalid email');
       return;
     }
 
     if (phoneNumber != null && !validatePhoneNumber(phoneNumber!)) {
-      // Show an error message for invalid phone number
-      // For example, you can use a snackbar or dialog to display the error message
       showErrorMessage('Invalid phone number');
       return;
     }
 
-    // if (password != null && !isPassStrong(password!)) {
-    //   // Show an error message for weak password
-    //   // For example, you can use a snackbar or dialog to display the error message
-    //   showErrorMessage('Weak password');
-    //   return;
-    // }
+    if (password != null && !isPassStrong(password!)) {
+      showErrorMessage('Weak password');
+      return;
+    }
 
     notifyListeners();
   }
@@ -101,43 +95,24 @@ class LoginProvider extends ChangeNotifier {
     return true;
   }
 
-  ///
-  ///[pass] this is the password method and shuold check strong index
-  ///
-  ///return weak if just have 4 characters
-  ///
-  ///return medium if have 6 characters
-  ///
-  ///return strong if contains medium requirements and also had both number characters and alphabet characters
-  ///
-  ///return very strong if contains strong requirements and also had special characters
-  // PassStrongIndex isPassStrong(String password) {
-  //   //TODO: implement
+  bool isPassStrong(String password) {
+    // if (password == null) {
+    //   return false;
+    // }
 
-  //   if (password == null) {
-  //     return;
-  //   }
-
-  //   return PassStrongIndex.medium;
-  // }
-
-  PassStrongIndex isPassStrong(String password) {
-    if (password == null) {
-      return PassStrongIndex.weak;
-    }
-
-    if (password.length >= 4) {
-      return PassStrongIndex.weak;
-    }
+    // if (password.length >= 4) {
+    //   return false;
+    // }
 
     if (password.length >= 6) {
       if (hasAlphabetCharacters(password) && hasNumberCharacters(password)) {
-        return PassStrongIndex.strong;
+        RegExp specialCharactersRegex = RegExp(r'[!@#$%^&*(),.?":{}|<>]');
+        return specialCharactersRegex.hasMatch(password);
       }
-      return PassStrongIndex.medium;
+      return false;
     }
 
-    return PassStrongIndex.weak;
+    return false;
   }
 
   bool hasAlphabetCharacters(String password) {
