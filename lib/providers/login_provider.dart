@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:login_statefull/pages/home_page.dart';
 
-enum PassStrongIndex {
-  weak,
-  medium,
-  strong,
-}
+// enum PassStrongIndex {
+//   weak,
+//   medium,
+//   strong,
+// }
 
 class LoginProvider extends ChangeNotifier {
   final BuildContext context;
@@ -91,36 +91,27 @@ class LoginProvider extends ChangeNotifier {
     return true;
   }
 
-  // it should say your password is weak
   bool isPassStrong(String password) {
+    // it should say your password is weak
     if (password.length <= 6 && password.length >= 4) {
-      //return PassStrongIndex.weak;
+      return false;
     }
 
     // it should say your password is medium
     if (password.length <= 8) {
-      //return PassStrongIndex.medium;
+      return false;
     }
 
     // here password is strong enough
-    if (password.length >= 8) {
-      if (hasAlphabetCharacters(password) && hasNumberCharacters(password)) {
-        RegExp specialCharactersRegex = RegExp(r'[!@#$%^&*(),.?":{}|<>]');
-        return specialCharactersRegex.hasMatch(password);
-      }
+    if (password.length >= 8 &&
+        hasAlphabetCharacters(password) &&
+        hasNumberCharacters(password) &&
+        hasSpecialCharacters(password)) {
       return true;
       //return PassStrongIndex.strong;
     }
 
-    //   if (password.length >= 8 && hasAlphabetCharacters(password) && hasNumberCharacters(password)) {
-    //     RegExp specialCharactersRegex = RegExp(r'[!@#$%^&*(),.?":{}|<>]');
-    //     return specialCharactersRegex.hasMatch(password);
-    //   }
-    //   return true;
-    //   //return PassStrongIndex.strong;
-    // }
-
-    return true;
+    return false;
   }
 
   bool hasAlphabetCharacters(String password) {
@@ -131,6 +122,11 @@ class LoginProvider extends ChangeNotifier {
   bool hasNumberCharacters(String password) {
     RegExp numbersRegex = RegExp(r'[0-9]');
     return numbersRegex.hasMatch(password);
+  }
+
+  bool hasSpecialCharacters(String password) {
+    RegExp specialCharactersRegex = RegExp(r'[!@#$%^&*(),.?":{}|<>]');
+    return specialCharactersRegex.hasMatch(password);
   }
 
   void goToLoginPage() {
