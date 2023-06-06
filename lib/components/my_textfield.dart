@@ -16,7 +16,7 @@ class MyTextField extends StatelessWidget {
     return TextField(
       controller: controller,
       keyboardType: keyboardType,
-      cursorColor: Theme.of(context).accentColor,
+      // cursorColor: Theme.of(context).accentColor,
       style: Theme.of(context).textTheme.bodyMedium,
       decoration: InputDecoration(
         border: Theme.of(context).inputDecorationTheme.border,

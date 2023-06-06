@@ -6,7 +6,7 @@ class MyTheme {
         appBarTheme: const AppBarTheme(
           centerTitle: true,
         ),
-        accentColor: Colors.black,
+        // accentColor: Colors.black,
         inputDecorationTheme: InputDecorationTheme(
           border: OutlineInputBorder(
             borderSide: const BorderSide(
@@ -52,7 +52,7 @@ class MyTheme {
             900: Color(0xFF0D47A1),
           },
         ),
-        accentColor: Colors.white,
+        // accentColor: Colors.white,
         scaffoldBackgroundColor: Colors.grey[900],
         textTheme: const TextTheme(
           bodyMedium: TextStyle(
