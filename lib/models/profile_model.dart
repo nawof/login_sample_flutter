@@ -27,18 +27,18 @@ class ProfileModel {
 
 // abstract class Empolyee {
 //   void work();
-//   // factory Empolyee(String type) {
-//   //   switch (type) {
-//   //     case 'programmer':
-//   //       return Programmer();
-//   //     case 'hr':
-//   //       return HRManager();
-//   //     case 'boss':
-//   //       return Boss();
-//   //     default:
-//   //       Programmer();
-//   //   }
-//   // }
+//   factory Empolyee(String type) {
+//     switch (type) {
+//       case 'programmer':
+//         return Programmer();
+//       case 'hr':
+//         return HRManager();
+//       case 'boss':
+//         return Boss();
+//       default:
+//         Programmer();
+//     }
+//   }
 // }
 
 // enum EmployeeType {
