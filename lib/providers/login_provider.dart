@@ -33,6 +33,22 @@ class LoginProvider extends ChangeNotifier {
     phoneNumber = phoneNumberController.text;
   }
 
+  String getEmail() {
+    return inputChecker(email);
+  }
+
+  String getPhoneNum() {
+    return inputChecker(phoneNumber);
+  }
+
+  String getPass() {
+    return inputChecker(password);
+  }
+
+  String inputChecker(String? value) {
+    return (value == null) ? 'Should not be empty' : value;
+  }
+
   void saveUserPassword() {
     password = passController.text;
     saveUserEmail();
@@ -61,29 +77,11 @@ class LoginProvider extends ChangeNotifier {
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 
-  String getEmail() {
-    return inputChecker(email);
-  }
-
-  String getPhoneNum() {
-    return inputChecker(phoneNumber);
-  }
-
-  String getPass() {
-    return inputChecker(password);
-  }
-
-  String inputChecker(String? value) {
-    return (value == null) ? 'Should not be empty' : value;
-  }
-
   bool validateEmail(String email) {
     return EmailValidator.validate(email);
   }
 
   bool validatePhoneNumber(String phoneNumber) {
-    // String PhoneNumber = phoneNumber;
-
     if (phoneNumber.length < 11) {
       return false;
     } else if (!phoneNumber.startsWith('09')) {
@@ -93,27 +91,36 @@ class LoginProvider extends ChangeNotifier {
     return true;
   }
 
+  // it should say your password is weak
   bool isPassStrong(String password) {
-    if (password.length <= 4) {
-      // it should say your password is weak
-      return false;
+    if (password.length <= 6 && password.length >= 4) {
+      //return PassStrongIndex.weak;
     }
 
-    if (password.length <= 6) {
-      // it should say your password is medium
-      return false;
+    // it should say your password is medium
+    if (password.length <= 8) {
+      //return PassStrongIndex.medium;
     }
 
-    if (password.length >= 6) {
+    // here password is strong enough
+    if (password.length >= 8) {
       if (hasAlphabetCharacters(password) && hasNumberCharacters(password)) {
         RegExp specialCharactersRegex = RegExp(r'[!@#$%^&*(),.?":{}|<>]');
         return specialCharactersRegex.hasMatch(password);
       }
-      // here password is strong enough
-      return false;
+      return true;
+      //return PassStrongIndex.strong;
     }
 
-    return false;
+    //   if (password.length >= 8 && hasAlphabetCharacters(password) && hasNumberCharacters(password)) {
+    //     RegExp specialCharactersRegex = RegExp(r'[!@#$%^&*(),.?":{}|<>]');
+    //     return specialCharactersRegex.hasMatch(password);
+    //   }
+    //   return true;
+    //   //return PassStrongIndex.strong;
+    // }
+
+    return true;
   }
 
   bool hasAlphabetCharacters(String password) {
