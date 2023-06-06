@@ -19,12 +19,48 @@ class _HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final provider = context.watch<HomeProvider>();
     return Scaffold(
       appBar: AppBar(
         title: const Text('Home'),
       ),
-      body: const Center(
-        child: Text('This is home page'),
+      body: AnimatedSwitcher(
+        duration: const Duration(milliseconds: 350),
+        child: (provider.isLoading)
+            ? const Center(
+                child: CircularProgressIndicator(),
+              )
+            : (provider.myProfile == null)
+                ? Center(
+                    child: IconButton(
+                      onPressed: context.read<HomeProvider>().initialiaze,
+                      icon: const Icon(
+                        Icons.refresh_rounded,
+                      ),
+                    ),
+                  )
+                : ListView(
+                    children: [
+                      Text(
+                        provider.myProfile!.firstName,
+                      ),
+                      Text(
+                        provider.myProfile!.lastName,
+                      ),
+                      Text(
+                        provider.myProfile!.nationalCode,
+                      ),
+                      Text(
+                        provider.myProfile!.phoneNumber,
+                      ),
+                      Text(
+                        provider.myProfile!.age.toString(),
+                      ),
+                      Text(
+                        provider.myProfile!.gender,
+                      ),
+                    ],
+                  ),
       ),
     );
   }

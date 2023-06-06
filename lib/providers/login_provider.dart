@@ -2,23 +2,35 @@ import 'package:flutter/material.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:login_statefull/pages/home_page.dart';
 
-// enum PassStrongIndex {
-//   weak,
-//   medium,
-//   strong,
-// }
+import '../constants/errors/my_error.dart';
+
+enum PassStrongIndex {
+  weak,
+  medium,
+  strong,
+}
 
 class LoginProvider extends ChangeNotifier {
   final BuildContext context;
   final String title;
-
+  final formKey = GlobalKey<FormState>();
   String? email;
   String? phoneNumber;
   String? password;
+  PassStrongIndex passStrongIndex = PassStrongIndex.weak;
+  final Map<PassStrongIndex, Color> passStrongColorMap = {
+    PassStrongIndex.weak: Colors.red,
+    PassStrongIndex.medium: Colors.orange,
+    PassStrongIndex.strong: Colors.green,
+  };
+  final Map<PassStrongIndex, double> passStrongProgressMap = {
+    PassStrongIndex.weak: 1 / 3,
+    PassStrongIndex.medium: 2 / 3,
+    PassStrongIndex.strong: 1,
+  };
 
   final emailController = TextEditingController();
   final phoneNumberController = TextEditingController();
-  final passController = TextEditingController();
 
   LoginProvider({
     required this.context,
@@ -49,26 +61,15 @@ class LoginProvider extends ChangeNotifier {
     return (value == null) ? 'Should not be empty' : value;
   }
 
+  void onChangePass(String value) {
+    password = value;
+    passStrongIndex = getPassStrongIndex(password ?? '');
+    notifyListeners();
+  }
+
   void saveUserPassword() {
-    password = passController.text;
     saveUserEmail();
     saveUserNumber();
-
-    if (email != null && !validateEmail(email!)) {
-      showErrorMessage('Invalid email');
-      return;
-    }
-
-    if (phoneNumber != null && !validatePhoneNumber(phoneNumber!)) {
-      showErrorMessage('Invalid phone number');
-      return;
-    }
-
-    if (password != null && !isPassStrong(password!)) {
-      showErrorMessage('Weak password');
-      return;
-    }
-
     notifyListeners();
   }
 
@@ -77,41 +78,54 @@ class LoginProvider extends ChangeNotifier {
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 
-  bool validateEmail(String email) {
-    return EmailValidator.validate(email);
+  String? validateEmail(String? email) {
+    if (email == null) {
+      MyError.invalidEmailError;
+    }
+    if (EmailValidator.validate(email!)) {
+      return null;
+    }
+    return MyError.invalidEmailError;
   }
 
-  bool validatePhoneNumber(String phoneNumber) {
-    if (phoneNumber.length < 11) {
-      return false;
-    } else if (!phoneNumber.startsWith('09')) {
-      return false;
+  String? validatePhoneNumber(String? phoneNumber) {
+    if (phoneNumber == null) {
+      MyError.invalidPhoneNumberError;
     }
-
-    return true;
+    if (phoneNumber!.startsWith('09')) {
+      if (phoneNumber.length < 11) {
+        return MyError.invalidPhoneNumberError;
+      }
+    } else if (phoneNumber.startsWith('+98')) {
+      if (phoneNumber.length < 13) {
+        return MyError.invalidPhoneNumberError;
+      }
+    }
+    return null;
   }
 
-  bool isPassStrong(String password) {
-    // it should say your password is weak
-    if (password.length <= 6 && password.length >= 4) {
-      return false;
+  PassStrongIndex getPassStrongIndex(String password) {
+    if (isStorngPass(password)) {
+      return PassStrongIndex.strong;
+    } else if (isMidPass(password)) {
+      return PassStrongIndex.medium;
     }
 
-    // it should say your password is medium
+    return PassStrongIndex.weak;
+  }
+
+  bool isStorngPass(String password) {
+    if (password.length >= 8 && hasAlphabetCharacters(password) && hasNumberCharacters(password) && hasSpecialCharacters(password)) {
+      return true;
+    }
+    return false;
+  }
+
+  bool isMidPass(String password) {
     if (password.length <= 8) {
       return false;
     }
-
-    // here password is strong enough
-    if (password.length >= 8 &&
-        hasAlphabetCharacters(password) &&
-        hasNumberCharacters(password) &&
-        hasSpecialCharacters(password)) {
-      return true;
-      //return PassStrongIndex.strong;
-    }
-
-    return false;
+    return true;
   }
 
   bool hasAlphabetCharacters(String password) {
@@ -130,6 +144,11 @@ class LoginProvider extends ChangeNotifier {
   }
 
   void goToLoginPage() {
+    final isValid = formKey.currentState!.validate();
+    if (!isValid) {
+      return;
+    }
+    formKey.currentState!.save();
     Navigator.push(
       context,
       MaterialPageRoute(

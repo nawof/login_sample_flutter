@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 
-class MyTextField extends StatelessWidget {
-  const MyTextField({
+class MyTextFormField extends StatelessWidget {
+  const MyTextFormField({
     super.key,
     this.controller,
     required this.label,
     this.onChange,
+    this.validator,
     this.keyboardType,
   });
 
@@ -13,9 +14,12 @@ class MyTextField extends StatelessWidget {
   final String label;
   final TextInputType? keyboardType;
   final void Function(String)? onChange;
+  final String? Function(String?)? validator;
+
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
+      validator: validator,
       controller: controller,
       keyboardType: keyboardType,
       onChanged: onChange,
