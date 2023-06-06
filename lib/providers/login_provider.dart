@@ -6,7 +6,6 @@ enum PassStrongIndex {
   weak,
   medium,
   strong,
-  veryStrong,
 }
 
 class LoginProvider extends ChangeNotifier {
@@ -83,12 +82,11 @@ class LoginProvider extends ChangeNotifier {
   }
 
   bool validatePhoneNumber(String phoneNumber) {
-    // Remove any non-digit characters from the phone number
-    String cleanedPhoneNumber = phoneNumber.replaceAll(RegExp(r'\D'), '');
+    // String PhoneNumber = phoneNumber;
 
-    if (cleanedPhoneNumber.length < 11) {
+    if (phoneNumber.length < 11) {
       return false;
-    } else if (!cleanedPhoneNumber.startsWith('09')) {
+    } else if (!phoneNumber.startsWith('09')) {
       return false;
     }
 
@@ -96,19 +94,22 @@ class LoginProvider extends ChangeNotifier {
   }
 
   bool isPassStrong(String password) {
-    // if (password == null) {
-    //   return false;
-    // }
+    if (password.length <= 4) {
+      // it should say your password is weak
+      return false;
+    }
 
-    // if (password.length >= 4) {
-    //   return false;
-    // }
+    if (password.length <= 6) {
+      // it should say your password is medium
+      return false;
+    }
 
     if (password.length >= 6) {
       if (hasAlphabetCharacters(password) && hasNumberCharacters(password)) {
         RegExp specialCharactersRegex = RegExp(r'[!@#$%^&*(),.?":{}|<>]');
         return specialCharactersRegex.hasMatch(password);
       }
+      // here password is strong enough
       return false;
     }
 
