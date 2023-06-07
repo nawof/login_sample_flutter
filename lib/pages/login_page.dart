@@ -107,7 +107,7 @@ class _LoginPage extends StatelessWidget {
                     currentValue: provider.passStrongProgressMap[provider.passStrongIndex] ?? 0,
                     progressColor: provider.passStrongColorMap[provider.passStrongIndex] ?? Colors.red,
                     backgroundColor: Colors.grey.shade300,
-                    animatedDuration: const Duration(milliseconds: 150),
+                    animatedDuration: const Duration(milliseconds: 350),
                     maxValue: 1,
                     size: 15,
                   ),

@@ -32,7 +32,7 @@ class MyProgreessBar extends StatefulWidget {
     this.currentValue = 0,
     this.maxValue = 100,
     this.size = 30,
-    this.animatedDuration = const Duration(milliseconds: 300),
+    this.animatedDuration = const Duration(milliseconds: 350),
     this.direction = Axis.horizontal,
     this.verticalDirection = VerticalDirection.down,
     this.border,
