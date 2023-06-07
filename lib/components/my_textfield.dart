@@ -11,15 +11,15 @@ class MyTextField extends StatelessWidget {
 
   final TextEditingController? controller;
   final String label;
-  final TextInputType? keyboardType;
   final void Function(String)? onChange;
+  final TextInputType? keyboardType;
+
   @override
   Widget build(BuildContext context) {
     return TextField(
       controller: controller,
-      keyboardType: keyboardType,
       onChanged: onChange,
-      // cursorColor: Theme.of(context).accentColor,
+      keyboardType: keyboardType,
       style: Theme.of(context).textTheme.bodyMedium,
       decoration: InputDecoration(
         border: Theme.of(context).inputDecorationTheme.border,
