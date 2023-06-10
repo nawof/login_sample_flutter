@@ -42,7 +42,7 @@ class _MyApp extends StatelessWidget {
   List<VRouteElement> get routs => [
         VWidget(
           path: '/login',
-          widget: const LoginPage(title: 'Login page'),
+          widget: const LoginPage(title: 'Login'),
           stackedRoutes: [
             VWidget(
               path: 'home',

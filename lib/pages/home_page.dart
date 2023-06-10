@@ -24,43 +24,48 @@ class _HomePage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Home'),
       ),
-      body: AnimatedSwitcher(
-        duration: const Duration(milliseconds: 350),
-        child: (provider.isLoading)
-            ? const Center(
-                child: CircularProgressIndicator(),
-              )
-            : (provider.myProfile == null)
-                ? Center(
-                    child: IconButton(
-                      onPressed: context.read<HomeProvider>().initialiaze,
-                      icon: const Icon(
-                        Icons.refresh_rounded,
-                      ),
-                    ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Center(
+          child: AnimatedSwitcher(
+            duration: const Duration(milliseconds: 350),
+            child: (provider.isLoading)
+                ? const Center(
+                    child: CircularProgressIndicator(),
                   )
-                : ListView(
-                    children: [
-                      Text(
-                        provider.myProfile!.firstName,
+                : (provider.myProfile == null)
+                    ? Center(
+                        child: IconButton(
+                          onPressed: context.read<HomeProvider>().initialiaze,
+                          icon: const Icon(
+                            Icons.refresh_rounded,
+                          ),
+                        ),
+                      )
+                    : ListView(
+                        children: [
+                          Text(
+                            provider.myProfile!.firstName,
+                          ),
+                          Text(
+                            provider.myProfile!.lastName,
+                          ),
+                          Text(
+                            provider.myProfile!.nationalCode,
+                          ),
+                          Text(
+                            provider.myProfile!.phoneNumber,
+                          ),
+                          Text(
+                            provider.myProfile!.age.toString(),
+                          ),
+                          Text(
+                            provider.myProfile!.gender,
+                          ),
+                        ],
                       ),
-                      Text(
-                        provider.myProfile!.lastName,
-                      ),
-                      Text(
-                        provider.myProfile!.nationalCode,
-                      ),
-                      Text(
-                        provider.myProfile!.phoneNumber,
-                      ),
-                      Text(
-                        provider.myProfile!.age.toString(),
-                      ),
-                      Text(
-                        provider.myProfile!.gender,
-                      ),
-                    ],
-                  ),
+          ),
+        ),
       ),
     );
   }
