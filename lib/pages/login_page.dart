@@ -96,9 +96,7 @@ class _LoginPage extends StatelessWidget {
                   label: 'Password',
                 ),
               ),
-              const SizedBox(
-                height: 16,
-              ),
+
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 32),
                 child: ClipRRect(
