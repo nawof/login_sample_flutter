@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:login_statefull/pages/home_page.dart';
+import 'package:vrouter/vrouter.dart';
 
 import '../constants/errors/my_error.dart';
 
@@ -115,7 +116,10 @@ class LoginProvider extends ChangeNotifier {
   }
 
   bool isStorngPass(String password) {
-    if (password.length >= 8 && hasAlphabetCharacters(password) && hasNumberCharacters(password) && hasSpecialCharacters(password)) {
+    if (password.length >= 8 &&
+        hasAlphabetCharacters(password) &&
+        hasNumberCharacters(password) &&
+        hasSpecialCharacters(password)) {
       return true;
     }
     return false;
@@ -149,11 +153,12 @@ class LoginProvider extends ChangeNotifier {
       return;
     }
     formKey.currentState!.save();
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => const HomePage(),
-      ),
-    );
+    context.vRouter.to('home');
+    // Navigator.push(
+    //   context,
+    //   MaterialPageRoute(
+    //     builder: (context) => const HomePage(),
+    //   ),
+    // );
   }
 }

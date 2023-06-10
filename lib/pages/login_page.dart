@@ -35,7 +35,7 @@ class _LoginPage extends StatelessWidget {
     final themeProvider = context.watch<ThemeProvider>();
     final provider = context.watch<LoginProvider>();
     return Scaffold(
-      resizeToAvoidBottomInset: false,
+      // resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: Text(
           context.read<LoginProvider>().title,
@@ -105,7 +105,8 @@ class _LoginPage extends StatelessWidget {
                   borderRadius: BorderRadius.circular(8),
                   child: MyProgreessBar(
                     currentValue: provider.passStrongProgressMap[provider.passStrongIndex] ?? 0,
-                    progressColor: provider.passStrongColorMap[provider.passStrongIndex] ?? Colors.red,
+                    progressColor:
+                        provider.passStrongColorMap[provider.passStrongIndex] ?? Colors.red,
                     backgroundColor: Colors.grey.shade300,
                     animatedDuration: const Duration(milliseconds: 350),
                     maxValue: 1,
@@ -116,37 +117,41 @@ class _LoginPage extends StatelessWidget {
               const SizedBox(
                 height: 16,
               ),
-              Text(
-                'Email: ${context.watch<LoginProvider>().getEmail()}',
-              ),
+              // Text(
+              //   'Email: ${context.watch<LoginProvider>().getEmail()}',
+              // ),
+              // const SizedBox(
+              //   height: 8,
+              // ),
+              // Text(
+              //   'Phone: ${context.watch<LoginProvider>().getPhoneNum()}',
+              // ),
+              // const SizedBox(
+              //   height: 8,
+              // ),
+              // Text(
+              //   'Password: ${context.watch<LoginProvider>().getPass()}',
+              // ),
+              // const SizedBox(
+              //   height: 8,
+              // ),
+              // ElevatedButton(
+              //   onPressed: context.read<LoginProvider>().saveUserPassword,
+              //   child: const Text(
+              //     'Show',
+              //   ),
+              // ),
               const SizedBox(
                 height: 8,
               ),
-              Text(
-                'Phone: ${context.watch<LoginProvider>().getPhoneNum()}',
-              ),
-              const SizedBox(
-                height: 8,
-              ),
-              Text(
-                'Password: ${context.watch<LoginProvider>().getPass()}',
-              ),
-              const SizedBox(
-                height: 8,
-              ),
-              ElevatedButton(
-                onPressed: context.read<LoginProvider>().saveUserPassword,
-                child: const Text(
-                  'Show',
-                ),
-              ),
-              const SizedBox(
-                height: 8,
-              ),
-              ElevatedButton(
-                onPressed: context.read<LoginProvider>().goToLoginPage,
-                child: const Text(
-                  'Login',
+              SizedBox(
+                height: 50,
+                width: 100,
+                child: ElevatedButton(
+                  onPressed: context.read<LoginProvider>().goToLoginPage,
+                  child: const Text(
+                    'Login',
+                  ),
                 ),
               ),
             ],
