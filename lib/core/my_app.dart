@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
 }
 
 class _MyApp extends StatelessWidget {
-  const _MyApp();
+  const _MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -48,9 +48,17 @@ class _MyApp extends StatelessWidget {
           path: '/login',
           widget: const LoginPage(title: 'Login'),
         ),
-        VWidget(
-          path: '/theme',
-          widget: const ThemePage(title: 'theme'),
+        VPopHandler(
+          onPop: (vRedirector) async =>
+              (vRedirector.historyCanBack()) ? vRedirector.historyBack() : vRedirector.pop(),
+          onSystemPop: (vRedirector) async =>
+              (vRedirector.historyCanBack()) ? vRedirector.historyBack() : vRedirector.pop(),
+          stackedRoutes: [
+            VWidget(
+              path: '/theme',
+              widget: const ThemePage(title: 'theme'),
+            ),
+          ],
         ),
         VNester(
           path: '/',
