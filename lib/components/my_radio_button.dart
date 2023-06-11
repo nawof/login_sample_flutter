@@ -5,19 +5,19 @@ import '../core/providers/theme_provider.dart';
 
 enum SingingCharacter { dark, light }
 
-class RadioExample extends StatefulWidget {
-  const RadioExample({super.key});
+class MyRadioButtn extends StatefulWidget {
+  const MyRadioButtn({super.key});
 
   @override
-  State<RadioExample> createState() => _RadioExampleState();
+  State<MyRadioButtn> createState() => _MyRadioButtnState();
 }
 
-class _RadioExampleState extends State<RadioExample> {
+class _MyRadioButtnState extends State<MyRadioButtn> {
   SingingCharacter? _character = SingingCharacter.dark;
 
   @override
   Widget build(BuildContext context) {
-    // final themeProvider = context.watch<ThemeProvider>();
+    final themeProvider = context.watch<ThemeProvider>();
 
     return Center(
       child: Column(
