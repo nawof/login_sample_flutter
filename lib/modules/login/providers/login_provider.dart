@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:email_validator/email_validator.dart';
-import 'package:login_statefull/pages/home_page.dart';
 import 'package:vrouter/vrouter.dart';
 
-import '../constants/errors/my_error.dart';
+import '../../../constants/errors/my_error.dart';
 
 enum PassStrongIndex {
   weak,
@@ -148,17 +147,11 @@ class LoginProvider extends ChangeNotifier {
   }
 
   void goToLoginPage() {
-    final isValid = formKey.currentState!.validate();
-    if (!isValid) {
-      return;
-    }
+    // final isValid = formKey.currentState!.validate();
+    // if (!isValid) {
+    //   return;
+    // }
     formKey.currentState!.save();
-    context.vRouter.to('home');
-    // Navigator.push(
-    //   context,
-    //   MaterialPageRoute(
-    //     builder: (context) => const HomePage(),
-    //   ),
-    // );
+    context.vRouter.to('/');
   }
 }

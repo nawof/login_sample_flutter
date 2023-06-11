@@ -1,28 +1,30 @@
 import 'package:flutter/material.dart';
-import 'package:login_statefull/providers/home_provider.dart';
+import 'package:login_statefull/modules/profile/providers/profile_provider.dart';
 import 'package:provider/provider.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+import '../../home/providers/home_provider.dart';
+
+class ProfilePage extends StatelessWidget {
+  const ProfilePage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (context) => HomeProvider(),
-      child: const _HomePage(),
+      create: (_) => ProfileProvider(),
+      child: const _ProfilePage(),
     );
   }
 }
 
-class _HomePage extends StatelessWidget {
-  const _HomePage({super.key});
+class _ProfilePage extends StatelessWidget {
+  const _ProfilePage();
 
   @override
   Widget build(BuildContext context) {
-    final provider = context.watch<HomeProvider>();
+    final provider = context.watch<ProfileProvider>();
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Home'),
+        title: const Text('profile'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),

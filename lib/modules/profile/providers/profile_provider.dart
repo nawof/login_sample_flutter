@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:login_statefull/apis/home_api.dart';
+import 'package:login_statefull/modules/profile/apis/profile_api.dart';
 import 'package:login_statefull/models/profile_model.dart';
 
-class HomeProvider extends ChangeNotifier {
-  final _homeApi = HomeApiMock();
+class ProfileProvider extends ChangeNotifier {
+  final _homeApi = ProfileApiMock();
   ProfileModel? myProfile;
   bool isLoading = true;
 
-  HomeProvider() {
+  ProfileProvider() {
     initialiaze();
   }
 

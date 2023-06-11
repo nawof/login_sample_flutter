@@ -5,7 +5,7 @@ import 'package:login_statefull/core/providers/theme_provider.dart';
 import 'package:provider/provider.dart';
 
 import 'package:login_statefull/components/my_textfield.dart';
-import 'package:login_statefull/providers/login_provider.dart';
+import 'package:login_statefull/modules/login/providers/login_provider.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({
@@ -28,14 +28,14 @@ class LoginPage extends StatelessWidget {
 }
 
 class _LoginPage extends StatelessWidget {
-  const _LoginPage({super.key});
+  const _LoginPage();
 
   @override
   Widget build(BuildContext context) {
     final themeProvider = context.watch<ThemeProvider>();
     final provider = context.watch<LoginProvider>();
     return Scaffold(
-      // resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: Text(
           context.read<LoginProvider>().title,
