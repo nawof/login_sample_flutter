@@ -9,7 +9,7 @@ class DashboardPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(actions: const [Drawer()]),
+      appBar: bulidAppBar(context),
       body: child,
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: context.vRouter.url.contains('profile') ? 1 : 0,
@@ -26,26 +26,44 @@ class DashboardPage extends StatelessWidget {
         ],
       ),
       drawer: Drawer(
+        // backgroundColor: Colors.grey[400],
         child: ListView(
           children: [
-            const DrawerHeader(
-              child: UserAccountsDrawerHeader(
-                accountName: Text('erfanasdasd'),
-                accountEmail: Text('data'),
-                currentAccountPicture: CircleAvatar(
-                  backgroundImage: AssetImage('assets/images/profilePic.jpg'),
-                ),
+            const UserAccountsDrawerHeader(
+              // arrowColor: Colors.black,
+              accountName: Text('erfan'),
+              accountEmail: Text('erfan@gmail.com'),
+              currentAccountPicture: CircleAvatar(
+                backgroundImage: AssetImage('assets/images/profilePic.jpg'),
               ),
             ),
             ListTile(
-              title: const Text('theme'),
-              onTap: () {
-                context.vRouter.to('/theme');
-              },
+              title: InkWell(
+                onTap: () {
+                  context.vRouter.to('/theme');
+                },
+                child: Container(
+                  color: Colors.blue[200],
+                  padding: const EdgeInsets.all(16.0),
+                  child: const Text('Theme'),
+                ),
+              ),
             ),
           ],
         ),
       ),
     );
+  }
+
+  AppBar bulidAppBar(BuildContext context) {
+    if (context.vRouter.url.contains('profile')) {
+      return AppBar(
+        title: const Text('profile'),
+      );
+    } else {
+      return AppBar(
+        title: const Text('home'),
+      );
+    }
   }
 }

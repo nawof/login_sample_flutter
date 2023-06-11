@@ -20,11 +20,8 @@ class _HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final provider = context.watch<HomeProvider>();
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Home'),
-      ),
-      body: const Center(
+    return const Scaffold(
+      body: Center(
         child: Text('Welcome to my first application'),
       ),
     );
