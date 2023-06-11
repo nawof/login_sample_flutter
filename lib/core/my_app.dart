@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:login_statefull/core/providers/theme_provider.dart';
-import 'package:login_statefull/core/theme/my_theme.dart';
 import 'package:login_statefull/modules/dashboard/pages/dashboard_page.dart';
 import 'package:login_statefull/modules/home/pages/home_page.dart';
 
 import 'package:login_statefull/modules/login/pages/login_page.dart';
 import 'package:login_statefull/modules/profile/pages/profile_page.dart';
+import 'package:login_statefull/modules/profile/pages/profile_pic.dart';
 import 'package:provider/provider.dart';
 import 'package:vrouter/vrouter.dart';
 
@@ -35,9 +35,7 @@ class _MyApp extends StatelessWidget {
     final themeProvider = context.watch<ThemeProvider>();
     return VRouter(
       debugShowCheckedModeBanner: false,
-      theme: MyTheme.lightTheme,
-      darkTheme: MyTheme.darkTheme,
-      themeMode: themeProvider.getThemeMode(),
+      theme: themeProvider.getTheme(),
       initialUrl: '/login',
       routes: routs,
     );
@@ -71,6 +69,12 @@ class _MyApp extends StatelessWidget {
             VWidget(
               path: 'profile',
               widget: const ProfilePage(),
+              stackedRoutes: [
+                VWidget(
+                  path: 'profile_pic',
+                  widget: const ProfilePic(),
+                ),
+              ],
             ),
           ],
         ),

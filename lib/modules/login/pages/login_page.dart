@@ -32,7 +32,6 @@ class _LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final themeProvider = context.watch<ThemeProvider>();
     final provider = context.watch<LoginProvider>();
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -40,23 +39,6 @@ class _LoginPage extends StatelessWidget {
         title: Text(
           context.read<LoginProvider>().title,
         ),
-        actions: [
-          AnimatedSwitcher(
-            duration: const Duration(
-              milliseconds: 250,
-            ),
-            child: IconButton(
-              onPressed: context.read<ThemeProvider>().changeTheme,
-              icon: (themeProvider.isLight)
-                  ? const Icon(
-                      Icons.dark_mode,
-                    )
-                  : const Icon(
-                      Icons.light_mode,
-                    ),
-            ),
-          ),
-        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(32.0),

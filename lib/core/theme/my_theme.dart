@@ -1,23 +1,46 @@
 import 'package:flutter/material.dart';
 
 class MyTheme {
-  static ThemeData get lightTheme => ThemeData(
-        primarySwatch: Colors.blue,
-        appBarTheme: const AppBarTheme(
-          centerTitle: true,
+  static ThemeData get darkTheme => ThemeData(
+        scaffoldBackgroundColor: Colors.grey[700],
+        textTheme: const TextTheme(
+          bodyMedium: TextStyle(
+            color: Colors.white,
+          ),
         ),
+        drawerTheme: DrawerThemeData(backgroundColor: Colors.grey[900]),
         inputDecorationTheme: InputDecorationTheme(
-          border: OutlineInputBorder(
+          labelStyle: const TextStyle(color: Colors.white),
+          enabledBorder: OutlineInputBorder(
             borderSide: const BorderSide(
-              color: Colors.black,
+              color: Colors.white,
             ),
             borderRadius: BorderRadius.circular(16),
           ),
+          focusedBorder: OutlineInputBorder(
+            borderSide: const BorderSide(
+              color: Colors.white,
+            ),
+            borderRadius: BorderRadius.circular(16),
+          ),
+          border: OutlineInputBorder(
+            borderSide: const BorderSide(
+              color: Colors.white,
+            ),
+            borderRadius: BorderRadius.circular(16),
+          ),
+          outlineBorder: const BorderSide(
+            color: Colors.white,
+          ),
+        ),
+        appBarTheme: AppBarTheme(
+          centerTitle: true,
+          backgroundColor: Colors.grey[900],
         ),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ButtonStyle(
             backgroundColor: const MaterialStatePropertyAll(
-              Colors.blue,
+              Color.fromARGB(255, 17, 17, 17),
             ),
             minimumSize: const MaterialStatePropertyAll(
               Size(
@@ -25,7 +48,10 @@ class MyTheme {
                 56,
               ),
             ),
-            elevation: const MaterialStatePropertyAll(8),
+            shadowColor: const MaterialStatePropertyAll(
+              Colors.grey,
+            ),
+            elevation: const MaterialStatePropertyAll(5),
             shape: MaterialStatePropertyAll(
               RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(16),
@@ -35,28 +61,14 @@ class MyTheme {
         ),
       );
 
-  static ThemeData get darkTheme => ThemeData(
-        primarySwatch: const MaterialColor(
-          0xFF000000,
-          <int, Color>{
-            50: Color(0xFFE3F2FD),
-            100: Color(0xFFBBDEFB),
-            200: Color(0xFF90CAF9),
-            300: Color(0xFF64B5F6),
-            400: Color(0xFF42A5F5),
-            500: Color(0xFF000000),
-            600: Color(0xFF1E88E5),
-            700: Color(0xFF1976D2),
-            800: Color(0xFF1565C0),
-            900: Color(0xFF0D47A1),
-          },
-        ),
-        scaffoldBackgroundColor: Colors.grey[900],
+  static ThemeData get redTheme => ThemeData(
+        scaffoldBackgroundColor: Colors.red[100],
         textTheme: const TextTheme(
           bodyMedium: TextStyle(
-            color: Colors.white,
+            color: Colors.black,
           ),
         ),
+        drawerTheme: DrawerThemeData(backgroundColor: Colors.red[400]),
         inputDecorationTheme: InputDecorationTheme(
           labelStyle: const TextStyle(color: Colors.white),
           enabledBorder: OutlineInputBorder(
@@ -83,6 +95,127 @@ class MyTheme {
         ),
         appBarTheme: const AppBarTheme(
           centerTitle: true,
+          backgroundColor: Colors.red,
+        ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ButtonStyle(
+            backgroundColor: const MaterialStatePropertyAll(
+              Color.fromARGB(255, 17, 17, 17),
+            ),
+            minimumSize: const MaterialStatePropertyAll(
+              Size(
+                double.maxFinite,
+                56,
+              ),
+            ),
+            shadowColor: const MaterialStatePropertyAll(
+              Colors.grey,
+            ),
+            elevation: const MaterialStatePropertyAll(5),
+            shape: MaterialStatePropertyAll(
+              RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(16),
+              ),
+            ),
+          ),
+        ),
+      );
+
+  static ThemeData get blueTheme => ThemeData(
+        scaffoldBackgroundColor: Colors.blue[100],
+        textTheme: const TextTheme(
+          bodyMedium: TextStyle(
+            color: Colors.black,
+          ),
+        ),
+        drawerTheme: DrawerThemeData(backgroundColor: Colors.blue[400]),
+        inputDecorationTheme: InputDecorationTheme(
+          labelStyle: const TextStyle(color: Colors.white),
+          enabledBorder: OutlineInputBorder(
+            borderSide: const BorderSide(
+              color: Colors.black,
+            ),
+            borderRadius: BorderRadius.circular(16),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderSide: const BorderSide(
+              color: Colors.red,
+            ),
+            borderRadius: BorderRadius.circular(16),
+          ),
+          border: OutlineInputBorder(
+            borderSide: const BorderSide(
+              color: Colors.white,
+            ),
+            borderRadius: BorderRadius.circular(16),
+          ),
+          outlineBorder: const BorderSide(
+            color: Colors.white,
+          ),
+        ),
+        appBarTheme: const AppBarTheme(
+          centerTitle: true,
+          backgroundColor: Colors.blue,
+        ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ButtonStyle(
+            backgroundColor: const MaterialStatePropertyAll(
+              Color.fromARGB(255, 0, 87, 250),
+            ),
+            minimumSize: const MaterialStatePropertyAll(
+              Size(
+                double.maxFinite,
+                56,
+              ),
+            ),
+            shadowColor: const MaterialStatePropertyAll(
+              Colors.grey,
+            ),
+            elevation: const MaterialStatePropertyAll(5),
+            shape: MaterialStatePropertyAll(
+              RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(16),
+              ),
+            ),
+          ),
+        ),
+      );
+
+  static ThemeData get greenTheme => ThemeData(
+        scaffoldBackgroundColor: Colors.green[100],
+        textTheme: const TextTheme(
+          bodyMedium: TextStyle(
+            color: Colors.black,
+          ),
+        ),
+        drawerTheme: DrawerThemeData(backgroundColor: Colors.green[400]),
+        inputDecorationTheme: InputDecorationTheme(
+          labelStyle: const TextStyle(color: Colors.white),
+          enabledBorder: OutlineInputBorder(
+            borderSide: const BorderSide(
+              color: Colors.white,
+            ),
+            borderRadius: BorderRadius.circular(16),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderSide: const BorderSide(
+              color: Colors.white,
+            ),
+            borderRadius: BorderRadius.circular(16),
+          ),
+          border: OutlineInputBorder(
+            borderSide: const BorderSide(
+              color: Colors.white,
+            ),
+            borderRadius: BorderRadius.circular(16),
+          ),
+          outlineBorder: const BorderSide(
+            color: Colors.white,
+          ),
+        ),
+        appBarTheme: const AppBarTheme(
+          centerTitle: true,
+          backgroundColor: Colors.green,
         ),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ButtonStyle(

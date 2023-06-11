@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:vrouter/vrouter.dart';
-
-import '../../../components/my_radio_button.dart';
 import '../../../core/providers/theme_provider.dart';
 
 class ThemePage extends StatefulWidget {
@@ -15,41 +13,52 @@ class ThemePage extends StatefulWidget {
 class _ThemePageState extends State<ThemePage> {
   @override
   Widget build(BuildContext context) {
-    final themeProvider = context.watch<ThemeProvider>();
-
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        appBar: AppBar(
-          centerTitle: true,
-          title: const Text('Theme'),
-          leading: IconButton(
-            icon: const Icon(Icons.arrow_back_rounded),
-            onPressed: () {
-              context.vRouter.pop();
-            },
-          ),
-          actions: [
-            AnimatedSwitcher(
-              duration: const Duration(
-                milliseconds: 250,
-              ),
-              child: IconButton(
-                onPressed: context.read<ThemeProvider>().changeTheme,
-                icon: (themeProvider.isLight)
-                    ? const Icon(
-                        Icons.dark_mode_rounded,
-                      )
-                    : const Icon(
-                        Icons.light_mode_rounded,
-                      ),
-              ),
+    // final themeProvider = context.watch<ThemeProvider>();
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: const Text('Theme'),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back_rounded),
+          onPressed: () {
+            context.vRouter.pop();
+          },
+        ),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                InkWell(
+                  onTap: () => context.read<ThemeProvider>().setTheme(ThemeColor.red),
+                  child: const CircleAvatar(
+                    backgroundColor: Colors.red,
+                  ),
+                ),
+                InkWell(
+                  onTap: () => context.read<ThemeProvider>().setTheme(ThemeColor.blue),
+                  child: const CircleAvatar(
+                    backgroundColor: Colors.blue,
+                  ),
+                ),
+                InkWell(
+                  onTap: () => context.read<ThemeProvider>().setTheme(ThemeColor.green),
+                  child: const CircleAvatar(
+                    backgroundColor: Colors.green,
+                  ),
+                ),
+                InkWell(
+                  onTap: () => context.read<ThemeProvider>().setTheme(ThemeColor.black),
+                  child: const CircleAvatar(
+                    backgroundColor: Colors.black,
+                  ),
+                ),
+              ],
             ),
           ],
-        ),
-        body: const Center(
-          child: MyRadioButtn(),
-          // child: Text('data'),
         ),
       ),
     );

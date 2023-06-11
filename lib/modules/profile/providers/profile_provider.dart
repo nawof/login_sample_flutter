@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:login_statefull/modules/profile/apis/profile_api.dart';
 import 'package:login_statefull/models/profile_model.dart';
+import 'package:vrouter/vrouter.dart';
 
 class ProfileProvider extends ChangeNotifier {
+  final BuildContext context;
   final _homeApi = ProfileApiMock();
   ProfileModel? myProfile;
   bool isLoading = true;
 
-  ProfileProvider() {
+  ProfileProvider({
+    required this.context,
+  }) {
     initialiaze();
   }
 
@@ -21,5 +25,9 @@ class ProfileProvider extends ChangeNotifier {
     }
     isLoading = false;
     notifyListeners();
+  }
+
+  void showBigPic() {
+    context.vRouter.to('profile_pic');
   }
 }

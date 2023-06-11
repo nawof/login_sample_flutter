@@ -11,30 +11,33 @@ class DashboardPage extends StatelessWidget {
     return Scaffold(
       appBar: bulidAppBar(context),
       body: child,
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: context.vRouter.url.contains('profile') ? 1 : 0,
-        onTap: (value) => context.vRouter.to((value == 0) ? '/' : '/profile'),
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home_rounded),
-            label: 'home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person_rounded),
-            label: 'profile',
-          ),
-        ],
-      ),
+      bottomNavigationBar: (context.vRouter.url.contains('profile_pic'))
+          ? null
+          : BottomNavigationBar(
+              currentIndex: context.vRouter.url.contains('profile') ? 1 : 0,
+              onTap: (value) => context.vRouter.to((value == 0) ? '/' : '/profile'),
+              items: const [
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.home_rounded),
+                  label: 'home',
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.person_rounded),
+                  label: 'profile',
+                ),
+              ],
+            ),
       drawer: Drawer(
-        // backgroundColor: Colors.grey[400],
         child: ListView(
           children: [
             const UserAccountsDrawerHeader(
-              // arrowColor: Colors.black,
               accountName: Text('erfan'),
               accountEmail: Text('erfan@gmail.com'),
               currentAccountPicture: CircleAvatar(
                 backgroundImage: AssetImage('assets/images/profilePic.jpg'),
+              ),
+              decoration: BoxDecoration(
+                color: Color.fromARGB(64, 0, 0, 0),
               ),
             ),
             ListTile(
@@ -55,8 +58,18 @@ class DashboardPage extends StatelessWidget {
     );
   }
 
-  AppBar bulidAppBar(BuildContext context) {
-    if (context.vRouter.url.contains('profile')) {
+  AppBar? bulidAppBar(BuildContext context) {
+    if (context.vRouter.url.contains('profile_pic')) {
+      return AppBar(
+        title: const Text('Show profile'),
+        leading: IconButton(
+          onPressed: () {
+            context.vRouter.historyBack();
+          },
+          icon: const Icon(Icons.arrow_back),
+        ),
+      );
+    } else if (context.vRouter.url.contains('profile')) {
       return AppBar(
         title: const Text('profile'),
       );

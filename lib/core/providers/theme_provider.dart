@@ -1,20 +1,33 @@
 import 'package:flutter/material.dart';
+import 'package:login_statefull/core/theme/my_theme.dart';
+
+enum ThemeColor {
+  red,
+  green,
+  blue,
+  black,
+}
 
 class ThemeProvider extends ChangeNotifier {
-  bool _isLight = true;
+  ThemeColor selectedTheme = ThemeColor.blue;
 
-  bool get isLight => _isLight;
-
-  void changeTheme() {
-    _isLight = !_isLight;
+  void setTheme(ThemeColor color) {
+    selectedTheme = color;
     notifyListeners();
   }
 
-  ThemeMode getThemeMode() {
-    if (_isLight) {
-      return ThemeMode.light;
-    } else {
-      return ThemeMode.dark;
+  ThemeData getTheme() {
+    switch (selectedTheme) {
+      case ThemeColor.red:
+        return MyTheme.redTheme;
+      case ThemeColor.blue:
+        return MyTheme.blueTheme;
+      case ThemeColor.green:
+        return MyTheme.greenTheme;
+      case ThemeColor.black:
+        return MyTheme.darkTheme;
+      default:
+        return MyTheme.blueTheme;
     }
   }
 }
