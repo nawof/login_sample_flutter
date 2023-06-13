@@ -23,3 +23,8 @@ This is a sample Flutter project showcasing a login page implementation with sta
 
 ```shell
 git clone https://github.com/your-username/login_sample_flutter.git
+
+
+Feel free to customize and modify the content as per your requirements. Make sure to replace `your-username` in the clone command with your actual GitHub username and update the links to the packages accordingly.
+
+Remember to include any additional information or instructions that might be relevant to users of your repository.
