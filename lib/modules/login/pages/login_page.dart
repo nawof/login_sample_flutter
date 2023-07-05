@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:login_statefull/components/my_progress_bar.dart';
 import 'package:login_statefull/components/my_text_form_field.dart';
-import 'package:login_statefull/core/providers/theme_provider.dart';
 import 'package:provider/provider.dart';
 
 import 'package:login_statefull/components/my_textfield.dart';

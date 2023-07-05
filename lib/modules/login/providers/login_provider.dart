@@ -1,8 +1,8 @@
-import 'package:flutter/material.dart';
 import 'package:email_validator/email_validator.dart';
+import 'package:flutter/material.dart';
 import 'package:vrouter/vrouter.dart';
 
-import '../../../constants/errors/my_error.dart';
+import 'package:login_statefull/constants/errors/my_error.dart';
 
 enum PassStrongIndex {
   weak,
@@ -115,10 +115,7 @@ class LoginProvider extends ChangeNotifier {
   }
 
   bool isStorngPass(String password) {
-    if (password.length >= 8 &&
-        hasAlphabetCharacters(password) &&
-        hasNumberCharacters(password) &&
-        hasSpecialCharacters(password)) {
+    if (password.length >= 8 && hasAlphabetCharacters(password) && hasNumberCharacters(password) && hasSpecialCharacters(password)) {
       return true;
     }
     return false;
@@ -147,10 +144,10 @@ class LoginProvider extends ChangeNotifier {
   }
 
   void goToLoginPage() {
-    // final isValid = formKey.currentState!.validate();
-    // if (!isValid) {
-    //   return;
-    // }
+    final isValid = formKey.currentState!.validate();
+    if (!isValid) {
+      return;
+    }
     formKey.currentState!.save();
     context.vRouter.to('/');
   }

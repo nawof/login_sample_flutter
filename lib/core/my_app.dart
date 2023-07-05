@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:login_statefull/core/providers/theme_provider.dart';
-import 'package:login_statefull/modules/dashboard/pages/dashboard_page.dart';
-import 'package:login_statefull/modules/home/pages/home_page.dart';
-
-import 'package:login_statefull/modules/login/pages/login_page.dart';
-import 'package:login_statefull/modules/profile/pages/profile_page.dart';
-import 'package:login_statefull/modules/profile/pages/profile_pic.dart';
 import 'package:provider/provider.dart';
 import 'package:vrouter/vrouter.dart';
 
-import '../modules/theme/pages/theme_page.dart';
+import 'package:login_statefull/core/providers/theme_provider.dart';
+import 'package:login_statefull/modules/dashboard/pages/dashboard_page.dart';
+import 'package:login_statefull/modules/home/pages/home_page.dart';
+import 'package:login_statefull/modules/login/pages/login_page.dart';
+import 'package:login_statefull/modules/profile/pages/profile_page.dart';
+import 'package:login_statefull/modules/profile/pages/profile_pic.dart';
+import 'package:login_statefull/modules/theme/pages/theme_page.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -47,10 +46,8 @@ class _MyApp extends StatelessWidget {
           widget: const LoginPage(title: 'Login'),
         ),
         VPopHandler(
-          onPop: (vRedirector) async =>
-              (vRedirector.historyCanBack()) ? vRedirector.historyBack() : vRedirector.pop(),
-          onSystemPop: (vRedirector) async =>
-              (vRedirector.historyCanBack()) ? vRedirector.historyBack() : vRedirector.pop(),
+          onPop: (vRedirector) async => (vRedirector.historyCanBack()) ? vRedirector.historyBack() : vRedirector.pop(),
+          onSystemPop: (vRedirector) async => (vRedirector.historyCanBack()) ? vRedirector.historyBack() : vRedirector.pop(),
           stackedRoutes: [
             VWidget(
               path: '/theme',

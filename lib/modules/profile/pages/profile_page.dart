@@ -57,12 +57,9 @@ class _ProfilePage extends StatelessWidget {
                               children: [
                                 _buildProfileInfo('First Name', provider.myProfile!.firstName),
                                 _buildProfileInfo('Last Name', provider.myProfile!.lastName),
-                                _buildProfileInfo(
-                                    'National Code', provider.myProfile!.nationalCode),
+                                _buildProfileInfo('National Code', provider.myProfile!.nationalCode),
                                 _buildProfileInfo('Phone Number', provider.myProfile!.phoneNumber),
                                 _buildProfileInfo('Age', provider.myProfile!.age.toString()),
-                                _buildProfileInfo('Gender', provider.myProfile!.gender),
-                                _buildProfileInfo('Gender', provider.myProfile!.gender),
                                 _buildProfileInfo('Gender', provider.myProfile!.gender),
                               ],
                             ),

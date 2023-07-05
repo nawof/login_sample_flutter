@@ -9,7 +9,7 @@ enum ThemeColor {
 }
 
 class ThemeProvider extends ChangeNotifier {
-  ThemeColor selectedTheme = ThemeColor.blue;
+  ThemeColor selectedTheme = ThemeColor.black;
 
   void setTheme(ThemeColor color) {
     selectedTheme = color;
@@ -18,16 +18,16 @@ class ThemeProvider extends ChangeNotifier {
 
   ThemeData getTheme() {
     switch (selectedTheme) {
-      case ThemeColor.red:
-        return MyTheme.redTheme;
-      case ThemeColor.blue:
-        return MyTheme.blueTheme;
-      case ThemeColor.green:
-        return MyTheme.greenTheme;
+      // case ThemeColor.red:
+      //   return MyTheme.redTheme;
+      // case ThemeColor.blue:
+      //   return MyTheme.blueTheme;
+      // case ThemeColor.green:
+      //   return MyTheme.greenTheme;
       case ThemeColor.black:
         return MyTheme.darkTheme;
       default:
-        return MyTheme.blueTheme;
+        return MyTheme.darkTheme;
     }
   }
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:vrouter/vrouter.dart';
-import '../../../core/providers/theme_provider.dart';
+import 'package:login_statefull/core/providers/theme_provider.dart';
 
 class ThemePage extends StatefulWidget {
   const ThemePage({super.key, required String title});
@@ -13,7 +13,7 @@ class ThemePage extends StatefulWidget {
 class _ThemePageState extends State<ThemePage> {
   @override
   Widget build(BuildContext context) {
-    // final themeProvider = context.watch<ThemeProvider>();
+    final themeProvider = context.watch<ThemeProvider>();
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
